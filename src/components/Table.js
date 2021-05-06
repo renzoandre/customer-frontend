@@ -121,12 +121,32 @@ export default function Table() {
         }
     };
 
+    const generateCustomer = () => {
+        for (let i = 0; i < 10000; i++) {
+            var customerData = {
+                firstName: faker.name.firstName(),
+                lastName: faker.name.lastName(),
+                email: faker.internet.email(),
+                phone: faker.phone.phoneNumber(),
+            };
+
+            console.log(customerData);
+            createCustomerApi(customerData)
+                .then((response) => {})
+                .catch((err) => {});
+        }
+    };
+
     return (
         <div>
+            <Button onClick={generateCustomer} type="primary">
+                Generate Customer
+            </Button>
             <Button onClick={showModalAdd} type="primary">
                 Add Customer
             </Button>
             <Divider />
+            Search Customer
             <Input
                 placeholder="Search customer"
                 onChange={(e) => onChangeSearch(e.target.value)}
@@ -146,7 +166,6 @@ export default function Table() {
                 <b>{totalElements}</b> customers <Button onClick={previusPage}>{'<'}</Button> Page <b>{page + 1}</b> of{' '}
                 <b>{totalPages}</b> <Button onClick={nextPage}>{'>'}</Button>
             </div>
-
             <Modal title="Customer" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={[]}>
                 {modalContent}
             </Modal>
