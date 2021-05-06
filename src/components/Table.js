@@ -121,27 +121,8 @@ export default function Table() {
         }
     };
 
-    const generateCustomer = () => {
-        for (let i = 0; i < 1000; i++) {
-            var customerData = {
-                firstName: faker.name.firstName(),
-                lastName: faker.name.lastName(),
-                email: faker.internet.email(),
-                phone: faker.phone.phoneNumber(),
-            };
-
-            console.log(customerData);
-            createCustomerApi(customerData)
-                .then((response) => {})
-                .catch((err) => {});
-        }
-    };
-
     return (
         <div>
-            <Button onClick={generateCustomer} type="primary">
-                Generate Customer
-            </Button>
             <Button onClick={showModalAdd} type="primary">
                 Add Customer
             </Button>
